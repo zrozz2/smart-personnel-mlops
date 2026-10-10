@@ -1,0 +1,296 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111c35">
+  <meta name="description" content="Smart Personnel MLOps API Developer Portal">
+  <title>Smart Personnel | Developer Portal</title>
+  <link rel="stylesheet" href="/static/portal.css">
+  <script src="/static/portal.js" defer></script>
+</head>
+<body>
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="/docs">
+      <span class="brand-logo">SP</span>
+      <span class="brand-copy">
+        <strong>Smart Personnel</strong>
+        <small>MLOps Platform</small>
+      </span>
+    </a>
+
+    <div class="nav-label">DEVELOPER PORTAL</div>
+    <nav class="side-nav">
+      <a class="nav-link active" href="#overview">◫ <span>Overview</span></a>
+      <a class="nav-link" href="#endpoints">⌘ <span>API Endpoints</span></a>
+      <a class="nav-link" href="#try-api">⚡ <span>Try the API</span></a>
+      <a class="nav-link" href="#response">▤ <span>Response Example</span></a>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="side-status">
+        <span class="status-dot" id="sideDot"></span>
+        <div>
+          <strong id="sideStatus">Checking API...</strong>
+          <small>Local environment</small>
+        </div>
+      </div>
+      <a class="nav-link swagger-link" href="/swagger">↗ <span>Open Swagger UI</span></a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <button class="menu-button" id="menuButton" aria-label="Open navigation">☰</button>
+      <div class="breadcrumb">Developer Portal <span>/</span> Overview</div>
+      <div class="topbar-right">
+        <span class="version-pill">API v1.0.0</span>
+        <a class="topbar-link" href="/swagger">Swagger ↗</a>
+      </div>
+    </header>
+
+    <div class="content">
+      <section class="hero" id="overview">
+        <div class="hero-content">
+          <div class="eyebrow"><span class="eyebrow-dot"></span> MACHINE LEARNING API</div>
+          <h1>Personnel Intelligence<br><span>API Platform</span></h1>
+          <p>
+            Dokumentasi REST API untuk prediksi jumlah tugas yang dapat
+            diselesaikan karyawan berdasarkan indikator aktivitas dan produktivitas.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#endpoints">Explore Endpoints <span>→</span></a>
+            <a class="button button-ghost" href="/swagger">Open Swagger ↗</a>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
+          <div class="art-core">SP<span>AI</span></div>
+          <div class="art-chip chip-one">ML MODEL</div>
+          <div class="art-chip chip-two">PREDICTION</div>
+          <div class="art-chip chip-three">API v1</div>
+        </div>
+      </section>
+
+      <section class="stats-grid" aria-label="API overview">
+        <article class="stat-card">
+          <div class="stat-top"><span>Service Status</span><span class="stat-icon green">⌁</span></div>
+          <div class="stat-value" id="apiStatus">Checking...</div>
+          <div class="stat-foot"><span class="status-dot" id="apiDot"></span><span id="apiStatusDetail">Connecting to API</span></div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-top"><span>Input Features</span><span class="stat-icon blue">▦</span></div>
+          <div class="stat-value" id="featureCount">—</div>
+          <div class="stat-foot">Required model inputs</div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-top"><span>Prediction Model</span><span class="stat-icon purple">⌘</span></div>
+          <div class="stat-value model-value">Linear Regression</div>
+          <div class="stat-foot">linear_regression_v1</div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-top"><span>API Framework</span><span class="stat-icon orange">ϟ</span></div>
+          <div class="stat-value">FastAPI</div>
+          <div class="stat-foot">REST · JSON</div>
+        </article>
+      </section>
+
+      <section class="section" id="endpoints">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow muted-eyebrow">REFERENCE</div>
+            <h2>API Endpoints</h2>
+            <p>Jelajahi endpoint yang tersedia di layanan Smart Personnel.</p>
+          </div>
+          <a class="text-link" href="/swagger">View full documentation ↗</a>
+        </div>
+
+        <div class="endpoint-layout">
+          <div class="endpoint-list">
+            <button class="endpoint-item selected" data-endpoint="health">
+              <span class="method get">GET</span>
+              <span class="endpoint-copy"><strong>/health</strong><small>Memeriksa status layanan API</small></span>
+              <span class="endpoint-arrow">→</span>
+            </button>
+            <button class="endpoint-item" data-endpoint="features">
+              <span class="method get">GET</span>
+              <span class="endpoint-copy"><strong>/features</strong><small>Melihat feature input model</small></span>
+              <span class="endpoint-arrow">→</span>
+            </button>
+            <button class="endpoint-item" data-endpoint="example">
+              <span class="method get">GET</span>
+              <span class="endpoint-copy"><strong>/example-input</strong><small>Mendapatkan contoh payload</small></span>
+              <span class="endpoint-arrow">→</span>
+            </button>
+            <button class="endpoint-item" data-endpoint="predict">
+              <span class="method post">POST</span>
+              <span class="endpoint-copy"><strong>/predict</strong><small>Memprediksi jumlah tugas selesai</small></span>
+              <span class="endpoint-arrow">→</span>
+            </button>
+          </div>
+
+          <article class="endpoint-detail" id="endpointDetail">
+            <div class="detail-top">
+              <span class="method get" id="detailMethod">GET</span>
+              <span class="detail-path" id="detailPath">/health</span>
+              <span class="detail-badge">Local API</span>
+            </div>
+            <h3 id="detailTitle">Health Check</h3>
+            <p id="detailDescription">Memeriksa apakah layanan API berjalan dengan baik.</p>
+            <div class="detail-meta">
+              <span>↳ Response format</span>
+              <code>application/json</code>
+            </div>
+            <div class="code-panel">
+              <div class="code-header"><span>RESPONSE PREVIEW</span><button id="copyResponse" class="copy-button">Copy JSON</button></div>
+              <pre id="responsePreview">Loading...</pre>
+            </div>
+            <button class="button button-primary full-button" id="tryEndpoint">Try this endpoint ↗</button>
+          </article>
+        </div>
+      </section>
+
+      <section class="section try-section" id="try-api">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow muted-eyebrow">QUICK START</div>
+            <h2>Test your API</h2>
+            <p>Periksa koneksi dan ambil contoh input dari server yang aktif.</p>
+          </div>
+        </div>
+        <div class="quick-grid">
+          <article class="quick-card">
+            <div class="quick-icon">⌁</div>
+            <h3>Check API Health</h3>
+            <p>Pastikan server dan model berhasil dimuat.</p>
+            <button class="button button-secondary" id="checkHealth">Check connection</button>
+            <div class="inline-result" id="healthResult" aria-live="polite">Belum diperiksa.</div>
+          </article>
+          <article class="quick-card">
+            <div class="quick-icon blue-icon">{ }</div>
+            <h3>Get Sample Input</h3>
+            <p>Ambil payload nyata untuk melihat format feature model.</p>
+            <button class="button button-secondary" id="getSample">Load sample input</button>
+            <div class="inline-result" id="sampleResult" aria-live="polite">Belum dimuat.</div>
+          </article>
+        </div>
+      </section>
+
+      
+<section class="section" id="prediction-studio">
+  <div class="section-heading">
+    <div>
+      <div class="eyebrow muted-eyebrow">INTERACTIVE ML</div>
+      <h2>Prediction Studio</h2>
+      <p>Masukkan data karyawan, lalu jalankan model secara langsung.</p>
+    </div>
+    <span class="version-pill">Linear Regression v1</span>
+  </div>
+
+  <div class="studio-layout">
+    <div class="studio-form-card">
+      <div class="studio-card-heading">
+        <div>
+          <h3>Employee input</h3>
+          <p>Isi seluruh feature yang diperlukan model.</p>
+        </div>
+        <button class="button button-secondary" id="loadSampleButton" type="button">
+          Load sample
+        </button>
+      </div>
+
+      <div id="predictionForm" class="prediction-form">
+        <div class="form-loading">Memuat feature dari API...</div>
+      </div>
+
+      <div class="form-actions">
+        <button class="button button-primary" id="predictButton" type="button">
+          <span id="predictButtonText">Run prediction →</span>
+        </button>
+        <button class="button button-secondary" id="resetPrediction" type="button">
+          Reset
+        </button>
+      </div>
+      <p class="form-footnote">
+        Data digunakan untuk request prediksi ke API yang sedang berjalan.
+      </p>
+    </div>
+
+    <div class="studio-result-card">
+      <div class="result-heading">
+        <span class="result-icon">✦</span>
+        <div>
+          <h3>Prediction result</h3>
+          <p>Hasil dari model yang aktif</p>
+        </div>
+      </div>
+
+      <div class="result-empty" id="predictionEmpty">
+        <div class="empty-illustration">↗</div>
+        <strong>Ready to predict</strong>
+        <p>Lengkapi data di sebelah kiri, lalu jalankan prediksi untuk melihat hasilnya di sini.</p>
+      </div>
+
+      <div id="predictionOutput" hidden>
+        <div class="result-label">ESTIMATED TASKS COMPLETED</div>
+        <div class="result-number" id="predictionValue">—</div>
+        <div class="result-caption">Estimasi dari model machine learning</div>
+        <div class="result-divider"></div>
+        <div class="result-detail">
+          <span>Model</span>
+          <strong id="resultModel">linear_regression_v1</strong>
+        </div>
+        <div class="result-detail">
+          <span>Request duration</span>
+          <strong id="predictionDuration">—</strong>
+        </div>
+        <div class="result-success" id="predictionMessage">
+          Prediction completed successfully.
+        </div>
+      </div>
+
+      <div class="result-error" id="predictionError" hidden></div>
+    </div>
+  </div>
+</section>
+
+
+      <section class="section" id="response">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow muted-eyebrow">INTEGRATION</div>
+            <h2>Prediction response</h2>
+            <p>Struktur umum respons sukses dari endpoint prediksi.</p>
+          </div>
+        </div>
+        <div class="response-layout">
+          <div class="response-info">
+            <div class="response-status"><span class="status-dot"></span> Expected success response</div>
+            <h3>Hasil prediksi dalam JSON</h3>
+            <p>Nilai prediksi merupakan estimasi model, bukan jaminan jumlah tugas yang benar-benar diselesaikan.</p>
+            <a href="/swagger" class="text-link">Test prediction in Swagger ↗</a>
+          </div>
+          <div class="code-panel response-code">
+            <div class="code-header"><span>JSON · EXAMPLE</span><button class="copy-button" id="copyExample">Copy JSON</button></div>
+            <pre id="predictionExample">{
+  "success": true,
+  "model": "linear_regression_v1",
+  "prediction": 234.5
+}</pre>
+            <div class="example-note">Contoh format saja — angka 234.5 bukan hasil prediksi aktual.</div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="footer-brand"><span class="brand-logo small-logo">SP</span><strong>Smart Personnel MLOps</strong></div>
+        <span>Developer Portal · API v1.0.0</span>
+      </footer>
+    </div>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
